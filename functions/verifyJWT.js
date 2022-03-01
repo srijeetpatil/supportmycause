@@ -5,7 +5,7 @@ var User = require("../models/User");
 var passport = require("passport");
 
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = "bnjng2u4unijng8";
+opts.secretOrKey = process.env.PASSWORD_HASH;
 
 var verifyJWT = passport.authenticate("jwt", { session: false });
 
