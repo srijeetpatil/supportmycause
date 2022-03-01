@@ -1,6 +1,5 @@
 var jwt = require("jsonwebtoken");
 
-// Add this to environment variables
 var secret = process.env.PASSWORD_HASH;
 
 function generateAccessToken(obj) {
