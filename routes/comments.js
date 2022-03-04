@@ -9,5 +9,3 @@ router.get("/");
 
 // Post a comment to a request/post
 router.post("/post", verifyJWT, postComment);
-
-router.post("/reply");
