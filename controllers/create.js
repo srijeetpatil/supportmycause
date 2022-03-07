@@ -25,13 +25,13 @@ var create = (req, res, next) => {
       type: type,
       eth_address: eth_address || "",
       shortId: shortId,
-      upvotes: 0,
-      downvotes: 0,
+      upvotes: [],
+      downvotes: [],
     });
 
     newRequest.save((err, request) => {
       if (err) {
-        res.statusCode = 500;
+        res.statusCode = 500;        
         res.json({ error: "500 internal server error, try again" });
         return next(err);
       } else {
