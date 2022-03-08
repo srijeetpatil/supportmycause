@@ -4,11 +4,11 @@ var extractUserFromJwt = require("../functions/extract");
 var postComment = (req, res, next) => {
   let data = extractUserFromJwt(req);
   let id = data.obj._id;
+  let postId = req.params.id;
 
-  let content = req.body.content;
-  let postId = req.body.postId;
+  let { content } = req.body;
 
-  if (id && postId && content) {
+  if (id && content) {
     let newComment = new Comment({
       author: id,
       content: content,

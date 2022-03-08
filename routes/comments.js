@@ -5,7 +5,9 @@ var verifyJWT = require("../functions/verifyJWT");
 var postComment = require("../controllers/postComment");
 
 // Get comments on a request by providing postId
-router.get("/");
+router.get("/:id");
 
 // Post a comment to a request/post
-router.post("/post", verifyJWT, postComment);
+router.post("/post/:id", verifyJWT, postComment);
+
+module.exports = router;

@@ -18,6 +18,7 @@ var upload = multer();
 var authRouter = require("./routes/auth");
 var requestsRouter = require("./routes/requests");
 var chatRouter = require("./routes/chat");
+var commentsRouter = require("./routes/comments");
 
 var app = express();
 
@@ -54,6 +55,7 @@ mongoose.connection.on("error", (error) => {
 app.use("/auth", authRouter);
 app.use("/requests", requestsRouter);
 app.use("/chat", chatRouter);
+app.use("/comment", commentsRouter);
 
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "/build/index.html"));
