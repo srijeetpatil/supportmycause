@@ -6,10 +6,7 @@ var create = (req, res, next) => {
   let data = extractUserFromJwt(req);
   let id = data.obj._id;
 
-  let content = req.body.content;
-  let type = req.body.type;
-  let eth_address = req.body.eth_address;
-  let title = req.body.title;
+  let { content, type, eth_address, title, files } = req.body;
 
   if (content && type && title) {
     // unique shortid to identify each request
@@ -27,11 +24,12 @@ var create = (req, res, next) => {
       shortId: shortId,
       upvotes: [],
       downvotes: [],
+      files: files,
     });
 
     newRequest.save((err, request) => {
       if (err) {
-        res.statusCode = 500;        
+        res.statusCode = 500;
         res.json({ error: "500 internal server error, try again" });
         return next(err);
       } else {

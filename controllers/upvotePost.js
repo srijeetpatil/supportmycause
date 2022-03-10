@@ -9,7 +9,7 @@ var upvotePost = async (req, res, next) => {
 
   let request = await Request.findOne({ shortId: shortId });
   let { upvotes, downvotes, created_by } = request;
-  let user = await User.findById(created_by);
+  let user = await User.findById(created_by);  
 
   if (upvotes.indexOf(userId) !== -1) {
     // Remove upvote and return
@@ -18,8 +18,10 @@ var upvotePost = async (req, res, next) => {
     request.upvotes = upvotes;
     await request.save();
 
-    user.karma = user.karma - 1;
-    await user.save();
+    if (userId != created_by) {
+      user.karma = user.karma - 1;
+      await user.save();
+    }
     res.json({ message: "Removed upvote" });
     return;
   } else if (downvotes.indexOf(userId) !== -1) {
@@ -28,7 +30,7 @@ var upvotePost = async (req, res, next) => {
     downvotes.splice(index, 1);
     request.downvotes = downvotes;
 
-    user.karma = user.karma + 1;
+    if (userId != created_by) user.karma = user.karma + 1;
   }
 
   // General case where a user is either upvoting first time or
@@ -37,8 +39,10 @@ var upvotePost = async (req, res, next) => {
   request.upvotes = upvotes;
   await request.save();
 
-  user.karma = user.karma + 1;
-  await user.save();
+  if (userId != created_by) {
+    user.karma = user.karma + 1;
+    await user.save();
+  }
 
   res.json({ message: "Upvoted" });
 };

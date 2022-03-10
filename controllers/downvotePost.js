@@ -17,7 +17,7 @@ var downvotePost = async (req, res, next) => {
     upvotes.splice(index, 1);
     request.upvotes = upvotes;
 
-    user.karma = user.karma - 1;
+    if (userId != created_by) user.karma = user.karma - 1;
   } else if (downvotes.indexOf(userId) !== -1) {
     // Remove downvote and return
     let index = downvotes.indexOf(userId);
@@ -25,8 +25,10 @@ var downvotePost = async (req, res, next) => {
     request.downvotes = downvotes;
     await request.save();
 
-    user.karma = user.karma + 1;
-    user.save();
+    if (userId != created_by) {
+      user.karma = user.karma + 1;
+      await user.save();
+    }
     res.json({ message: "Removed downvote" });
     return;
   }
@@ -37,8 +39,10 @@ var downvotePost = async (req, res, next) => {
   request.downvotes = downvotes;
   await request.save();
 
-  user.karma = user.karma - 1;
-  user.save();
+  if (userId != created_by) {
+    user.karma = user.karma - 1;
+    await user.save();
+  }
   res.json({ message: "Downvoted" });
 };
 

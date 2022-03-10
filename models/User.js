@@ -17,6 +17,7 @@ var userSchema = new Schema({
       _id: false,
     },
   ],
+  verified: { type: Boolean, default: false },
 });
 
 module.exports = mongoose.models.User || mongoose.model("User", userSchema);
