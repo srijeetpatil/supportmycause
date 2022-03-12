@@ -13,8 +13,17 @@ var getMyProfile = (req, res) => {
         res.json({ error: "INS error" });
         return;
       } else {
-        let { username, eth_address, karma, type, chat, _id, verified } =
-          userData;
+        let {
+          username,
+          eth_address,
+          karma,
+          type,
+          chat,
+          _id,
+          verified,
+          picture,
+          verificationFile,
+        } = userData;
         res.json({
           username,
           eth_address,
@@ -23,6 +32,8 @@ var getMyProfile = (req, res) => {
           chat,
           id: _id,
           verified,
+          picture,
+          verificationFile,
         });
       }
     });

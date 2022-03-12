@@ -18,6 +18,8 @@ var userSchema = new Schema({
     },
   ],
   verified: { type: Boolean, default: false },
+  verificationFile: { type: String },
+  picture: { type: String },
 });
 
 module.exports = mongoose.models.User || mongoose.model("User", userSchema);
