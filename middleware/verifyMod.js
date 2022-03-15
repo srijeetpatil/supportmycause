@@ -12,8 +12,7 @@ var verifyMod = (req, res, next) => {
       return next(err);
     } else if (result) {
       let type = result.type;
-      let karma = result.karma;
-      if (type === "Admin" || karma > 10) {
+      if (type === "Admin") {
         return next();
       } else {
         res.statusCode = 400;
