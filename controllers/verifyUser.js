@@ -6,20 +6,11 @@ var verify = async (req, res, next) => {
     await User.findByIdAndUpdate(
       id,
       { $set: { verified: value } },
-      { new: true },
-      (err, docs) => {
-        if (err) {
-          res.statusCode = 500;
-          res.json({ error: "Internal server error" });
-          return next(err);
-        } else {
-          res.statusCode = 200;
-          res.json({ message: "Success" });
-        }
-      }
+      { new: true }
     );
+    res.status(200).json({ message: "Success" });
   } catch (err) {
-    res.statusCode = 500;
+    res.statusCode = 500;    
     res.json({ error: "Internal server error" });
     return next(err);
   }
