@@ -3,9 +3,9 @@ var router = express.Router();
 var verifyJWT = require("../functions/verifyJWT");
 var verifyMod = require("../middleware/verifyMod");
 // controllers
-var verify = require("../controllers/verifyRequest");
-var getAllUsers = require("../controllers/getAllUsers");
-var verifyUser = require("../controllers/verifyUser");
+var verify = require("../controllers/admin/verifyRequest");
+var getAllUsers = require("../controllers/admin/getAllUsers");
+var verifyUser = require("../controllers/admin/verifyUser");
 
 // Get all users
 router.get("/users/", verifyJWT, verifyMod, getAllUsers);

@@ -1,11 +1,11 @@
 var express = require("express");
 var router = express.Router();
 // controllers
-var signup = require("../controllers/signup");
-var login = require("../controllers/login");
-var getMyProfile = require("../controllers/getMyProfile");
-var addVerificationFile = require("../controllers/addVerificationFile");
-var addProfilePicture = require("../controllers/addProfilePicture");
+var signup = require("../controllers/auth/signup");
+var login = require("../controllers/auth/login");
+var getMyProfile = require("../controllers/auth/getMyProfile");
+var addVerificationFile = require("../controllers/auth/addVerificationFile");
+var addProfilePicture = require("../controllers/auth/addProfilePicture");
 // middleware
 var userExists = require("../middleware/userExists");
 // functions
