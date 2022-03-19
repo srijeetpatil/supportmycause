@@ -12,7 +12,8 @@ var verify = async (req, res, next) => {
     );
     res.status(200).json({ message: "Success" });
   } catch (err) {
-    console.error(err);
+    res.statusCode = 500;
+    res.json({ error: "INS" });
   }
 };
 

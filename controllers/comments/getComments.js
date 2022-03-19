@@ -11,7 +11,6 @@ var getComments = async (req, res, next) => {
     res.json({ comments: comments });
   } catch (err) {
     res.statusCode = 500;
-    console.log(err);
     res.json({ error: "INS" });
     return next(err);
   }
