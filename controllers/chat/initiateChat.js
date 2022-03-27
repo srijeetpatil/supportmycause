@@ -6,13 +6,11 @@ var initiateChat = (req, res, next) => {
     let data = extractUserFromJwt(req);
     let { _id } = data.obj;
 
-    let { reciever, message } = req.body;
+    let { reciever } = req.body;
 
     let messageBody = {
       sender: _id,
       reciever: reciever,
-      status: "Pending",
-      content: message,
     };
 
     User.update(

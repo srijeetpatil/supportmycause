@@ -11,6 +11,7 @@ var getMyProfile = (req, res) => {
       .exec((err, userData) => {
         if (err) {
           res.statusCode = 500;
+          console.log(err);
           res.json({ error: "INS error" });
           return;
         } else {
