@@ -5,7 +5,7 @@ var getComments = async (req, res, next) => {
   try {
     let comments = await Comment.find({ postId: postId }).populate(
       "author",
-      "username"
+      "username picture",      
     );
 
     res.json({ comments: comments });

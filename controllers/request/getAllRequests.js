@@ -3,6 +3,7 @@ var Request = require("../../models/Request");
 var getAllRequests = (req, res, next) => {
   try {
     Request.find()
+      .sort({ _id: -1 })
       .populate("created_by", "username karma picture")
       .exec((err, result) => {
         if (err) {
